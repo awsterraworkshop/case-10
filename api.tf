@@ -32,6 +32,7 @@ resource "aws_api_gateway_method" "ms1-api-POST-method" {
   resource_id   = aws_api_gateway_resource.ms1-api-resource.id
   http_method   = "POST"
   authorization = "NONE"
+  api_key_required = true
 
 }
 
@@ -86,6 +87,9 @@ resource "aws_api_gateway_deployment" "ms1-api-deployment" {
         aws_api_gateway_integration.ms1-api-get-integration.id,
         aws_api_gateway_method.ms1-api-POST-method.id,
         aws_api_gateway_integration.ms1-api-post-integration.id
+        # aws_api_gateway_usage_plan.usage1.id,
+        # aws_api_gateway_api_key.key1.id,
+        # aws_api_gateway_usage_plan_key.usage1-key1.id
     ]))
   }
 }
